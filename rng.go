@@ -5,14 +5,15 @@ import (
 	"time"
 )
 
-func New() RNG {
-	return RNG{
-		r: rand.New(rand.NewSource(time.Now().UnixNano())),
+func New() *RNG {
+	r:=rand.New(rand.NewSource(time.Now().UnixNano()))
+	return &RNG{
+		r: *r,
 	}
 }
 
 type RNG struct {
-	r *rand.Rand
+	r rand.Rand
 }
 
 func (r *RNG) Int63() int64 {
